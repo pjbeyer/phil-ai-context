@@ -1,0 +1,59 @@
+{
+  "levels": {
+    "global": {
+      "path": "/Users/pjbeyer/Projects",
+      "agentsMd": "AGENTS.md",
+      "tokenBudget": {
+        "chars": "8000-12000",
+        "tokens": "2000-3000"
+      }
+    },
+    "profile": {
+      "paths": ["pjbeyer", "work", "play", "home"],
+      "agentsMd": "AGENTS.md",
+      "tokenBudget": {
+        "chars": "5000-8000",
+        "tokens": "1250-2000"
+      }
+    },
+    "project": {
+      "agentsMd": "AGENTS.md",
+      "tokenBudget": {
+        "chars": "4000-6000",
+        "tokens": "1000-1500"
+      }
+    },
+    "agent": {
+      "agentsMd": "AGENTS.md",
+      "tokenBudget": {
+        "chars": "2000-6000",
+        "tokens": "500-1500"
+      }
+    }
+  },
+  "loadingStrategy": {
+    "agent": {
+      "load": ["agent", "project", "profile"],
+      "skip": ["global"],
+      "reason": "Agent work is specific, global context rarely needed"
+    },
+    "project": {
+      "load": ["project", "profile", "global"],
+      "reason": "Projects may need cross-profile patterns"
+    },
+    "profile": {
+      "load": ["profile", "global"],
+      "reason": "Profile work needs global context"
+    },
+    "global": {
+      "load": ["global"],
+      "reason": "Working at global level"
+    }
+  },
+  "hierarchyPrinciples": {
+    "contentAtAppropriateLevel": "Each piece of information should exist at exactly one level",
+    "referenceNotDuplicate": "Higher levels should be referenced, not duplicated at lower levels",
+    "parentContextAvailable": "Parent context is available to all children",
+    "minimalLoading": "Only load context relevant to current level"
+  }
+}

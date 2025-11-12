@@ -1,0 +1,87 @@
+{
+  "loadingRules": {
+    "maxContextSize": {
+      "agent": 20000,
+      "project": 25000,
+      "profile": 18000,
+      "global": 12000
+    },
+    "warnings": {
+      "yellow": "10-25% over budget",
+      "red": "25%+ over budget"
+    }
+  },
+  "optimizationRules": {
+    "extractToGlobalWhen": [
+      "Pattern appears in 2+ profiles",
+      "Truly cross-cutting concern",
+      "Benefits from centralization"
+    ],
+    "keepInProfileWhen": [
+      "Profile-specific implementation",
+      "Different across profiles",
+      "Context-dependent"
+    ],
+    "extractToDocsWhen": [
+      "Detailed procedures",
+      "Comprehensive examples",
+      "Historical context",
+      "Edge cases",
+      "Verbose explanations"
+    ],
+    "keepInAgentsMdWhen": [
+      "Essential for routing decisions",
+      "Required for agent coordination",
+      "Critical for tool access",
+      "Key for understanding purpose"
+    ]
+  },
+  "contentClassification": {
+    "essential": {
+      "examples": [
+        "Purpose and scope",
+        "Key capabilities",
+        "Primary workflows (outline only)",
+        "Integration points",
+        "Critical constraints",
+        "Access patterns",
+        "Key decisions"
+      ]
+    },
+    "detailed": {
+      "examples": [
+        "Detailed examples",
+        "Step-by-step procedures",
+        "Background information",
+        "Historical context",
+        "Edge cases",
+        "Verbose explanations",
+        "Comprehensive lists"
+      ],
+      "extractTo": "docs/"
+    },
+    "redundant": {
+      "examples": [
+        "Duplicate content from parent",
+        "Outdated information",
+        "Verbose repetition"
+      ],
+      "action": "Remove or reference parent"
+    }
+  },
+  "mcpRules": {
+    "configFiles": [
+      ".mcp.json",
+      ".claude/settings.local.json"
+    ],
+    "documentationHierarchy": {
+      "global": "Cross-profile patterns, global registry",
+      "profile": "Profile-specific configs, usage patterns",
+      "project": "Project-specific integrations only"
+    },
+    "optimizationTargets": {
+      "globalMcpDocs": "< 10k chars",
+      "profileMcpDocs": "< 5k chars each"
+    }
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "profiles": {
+    "pjbeyer": {
+      "name": "pjbeyer",
+      "purpose": "Professional/consulting work",
+      "path": "/Users/pjbeyer/Projects/pjbeyer",
+      "standards": {
+        "testCoverage": "80%",
+        "docStyle": "comprehensive",
+        "quality": "client-focused"
+      },
+      "agentsMdTarget": "4000-6000 chars",
+      "primaryTools": ["github", "notion", "google-workspace"],
+      "gitConfig": "~/.config/git/config"
+    },
+    "work": {
+      "name": "work",
+      "purpose": "Enterprise/corporate (Flex)",
+      "path": "/Users/pjbeyer/Projects/work",
+      "standards": {
+        "testCoverage": "90% (critical paths)",
+        "docStyle": "slim (3-5k chars)",
+        "quality": "security-first",
+        "security": "enterprise"
+      },
+      "agentsMdTarget": "3000-5000 chars",
+      "primaryTools": ["jira", "github-flex", "dryrun", "notion"],
+      "gitConfig": "~/.config/git/config-work"
+    },
+    "play": {
+      "name": "play",
+      "purpose": "Experimental/learning",
+      "path": "/Users/pjbeyer/Projects/play",
+      "standards": {
+        "testCoverage": "minimal",
+        "docStyle": "flexible",
+        "quality": "quick-iteration"
+      },
+      "agentsMdTarget": "2000-4000 chars",
+      "primaryTools": ["experimental"],
+      "gitConfig": "~/.config/git/config-play"
+    },
+    "home": {
+      "name": "home",
+      "purpose": "Personal/family",
+      "path": "/Users/pjbeyer/Projects/home",
+      "standards": {
+        "testCoverage": "practical",
+        "docStyle": "simple",
+        "quality": "accessible"
+      },
+      "agentsMdTarget": "2000-4000 chars",
+      "primaryTools": ["calendar", "tasks", "family-organization"],
+      "gitConfig": "~/.config/git/config-home"
+    }
+  },
+  "detection": {
+    "method": "path-based",
+    "rules": [
+      {
+        "pattern": "/Users/pjbeyer/Projects/pjbeyer/*",
+        "profile": "pjbeyer"
+      },
+      {
+        "pattern": "/Users/pjbeyer/Projects/work/*",
+        "profile": "work"
+      },
+      {
+        "pattern": "/Users/pjbeyer/Projects/play/*",
+        "profile": "play"
+      },
+      {
+        "pattern": "/Users/pjbeyer/Projects/home/*",
+        "profile": "home"
+      },
+      {
+        "pattern": "/Users/pjbeyer/Projects",
+        "profile": "global"
+      }
+    ]
+  }
+}

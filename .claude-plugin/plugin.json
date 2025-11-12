@@ -1,0 +1,83 @@
+{
+  "name": "agents-context-system",
+  "version": "1.0.0",
+  "description": "Manage hierarchical agent infrastructure, AGENTS.md optimization, MCP configuration, and smart context loading across profiles",
+  "author": {
+    "name": "Phil Beyer",
+    "email": "6152278+pjbeyer@users.noreply.github.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pjbeyer/agents-context-system"
+  },
+  "skills": {
+    "optimize-agents-context": {
+      "description": "Analyze and optimize AGENTS.md files across hierarchy for token efficiency and clarity",
+      "path": "./skills/optimization/optimize-agents-context.md"
+    },
+    "optimize-mcp-config": {
+      "description": "Analyze and optimize MCP server configuration and documentation",
+      "path": "./skills/optimization/optimize-mcp-config.md"
+    },
+    "detect-profile": {
+      "description": "Detect current profile from directory path (pjbeyer/work/play/home/global)",
+      "path": "./skills/hierarchy/detect-profile.md"
+    },
+    "detect-level": {
+      "description": "Detect hierarchy level (global/profile/project/agent)",
+      "path": "./skills/hierarchy/detect-level.md"
+    },
+    "navigate-hierarchy": {
+      "description": "Navigate between hierarchy levels and locate parent/child contexts",
+      "path": "./skills/hierarchy/navigate-hierarchy.md"
+    },
+    "load-agents-context": {
+      "description": "Smart context loading based on hierarchy level and profile",
+      "path": "./skills/context/load-agents-context.md"
+    },
+    "analyze-context-usage": {
+      "description": "Analyze context token usage and identify optimization opportunities",
+      "path": "./skills/context/analyze-context-usage.md"
+    },
+    "add-task": {
+      "description": "Add task to appropriate hierarchy level with context awareness",
+      "path": "./skills/tasks/add-task.md"
+    },
+    "manage-tasks": {
+      "description": "Manage tasks across hierarchy levels",
+      "path": "./skills/tasks/manage-tasks.md"
+    }
+  },
+  "commands": {
+    "optimize-agents": {
+      "description": "Optimize AGENTS.md files across profiles",
+      "path": "./commands/optimize-agents.md"
+    },
+    "optimize-mcp": {
+      "description": "Optimize MCP configuration and documentation",
+      "path": "./commands/optimize-mcp.md"
+    },
+    "add-task": {
+      "description": "Add task to hierarchy-aware task management",
+      "path": "./commands/add-task.md"
+    }
+  },
+  "hooks": {
+    "session-start": {
+      "description": "Smart context loader for session initialization",
+      "path": "./hooks/smart-context-loader.js"
+    }
+  },
+  "config": {
+    "hierarchy": {
+      "path": "./config/hierarchy-config.json"
+    },
+    "profiles": {
+      "path": "./config/profile-definitions.json"
+    },
+    "context-rules": {
+      "path": "./config/context-rules.json"
+    }
+  }
+}
