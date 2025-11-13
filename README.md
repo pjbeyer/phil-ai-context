@@ -1,11 +1,11 @@
 # agents-context-system
 
-A Claude Code plugin for managing hierarchical agent infrastructure, AGENTS.md optimization, MCP configuration, and smart context loading across profiles.
+Optimize AGENTS.md files, manage MCP configuration, and load context efficiently.
 
 ## Features
 
 - **AGENTS.md Optimization**: Token-efficient context files with hierarchy awareness
-- **Smart Context Loading**: Load only relevant context based on level (40% token savings)
+- **Smart Context Loading**: Load only relevant context based on hierarchy level
 - **MCP Configuration Management**: Optimize MCP server setup and documentation
 - **Hierarchy Management**: Detect and navigate global/profile/project/agent levels
 - **Profile-Aware**: Respect different standards across pjbeyer/work/play/home
@@ -13,21 +13,9 @@ A Claude Code plugin for managing hierarchical agent infrastructure, AGENTS.md o
 
 ## Installation
 
-### Via agents-marketplace (Recommended)
-
 ```bash
-# Add the marketplace
 /plugin marketplace add pjbeyer/agents-marketplace
-
-# Install the plugin
 /plugin install agents-context-system@agents-marketplace
-```
-
-### Direct Installation
-
-```bash
-/plugin marketplace add pjbeyer/agents-context-system
-/plugin install agents-context-system@agents-context-system
 ```
 
 ## Commands
@@ -309,16 +297,8 @@ cd ~/Projects/work/security-project
 
 ## License
 
-MIT License - see LICENSE file for details
-
-## Author
-
-Phil Beyer <6152278+pjbeyer@users.noreply.github.com>
+MIT License
 
 ## Repository
 
 https://github.com/pjbeyer/agents-context-system
-
-## Version
-
-1.0.0
