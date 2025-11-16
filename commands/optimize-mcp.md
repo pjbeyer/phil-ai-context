@@ -1,3 +1,7 @@
+---
+description: Analyze and optimize MCP server configuration, documentation, and integration patterns across profiles
+---
+
 # Optimize MCP - Configuration and Documentation
 
 Analyze and optimize MCP server configuration, documentation hierarchy, and integration patterns across profiles.

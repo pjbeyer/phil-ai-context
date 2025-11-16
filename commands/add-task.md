@@ -1,3 +1,7 @@
+---
+description: Add tasks to the appropriate hierarchy level with context awareness and external system integration
+---
+
 # Add Task - Hierarchy-Aware Task Management
 
 Add tasks to the appropriate hierarchy level with proper context awareness and integration with external systems.

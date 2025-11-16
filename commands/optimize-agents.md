@@ -1,3 +1,7 @@
+---
+description: Analyze and optimize AGENTS.md files across hierarchy for token efficiency and hierarchical correctness
+---
+
 # Optimize AGENTS.md - Context Optimization
 
 Analyze and optimize AGENTS.md files across hierarchy for token efficiency, redundancy elimination, and hierarchical correctness.
