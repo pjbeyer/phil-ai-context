@@ -12,13 +12,15 @@ Use and follow the `optimize-settings` skill exactly as written.
 
 ## Usage
 
+**Important**: This is a Claude Code slash command, not a shell executable. Use it through Claude Code's command system or the SlashCommand tool.
+
 From any location in your project hierarchy:
 
 ```bash
-/optimize-settings              # Context-adaptive mode
-/optimize-settings --global     # Force global scan
-/optimize-settings --user-only  # User-level only
-/optimize-settings --dry-run    # Show recommendations without applying
+/agents-context-system:optimize-settings              # Context-adaptive mode
+/agents-context-system:optimize-settings --global     # Force global scan
+/agents-context-system:optimize-settings --user-only  # User-level only
+/agents-context-system:optimize-settings --dry-run    # Show recommendations without applying
 ```
 
 The skill will:

@@ -387,9 +387,9 @@ Found:
 ### Mode Override
 User can force specific mode:
 ```bash
-/optimize-settings --global      # Force global scan
-/optimize-settings --user-only   # Force user-only
-/optimize-settings --dry-run     # Show recommendations, don't apply
+/agents-context-system:optimize-settings --global      # Force global scan
+/agents-context-system:optimize-settings --user-only   # Force user-only
+/agents-context-system:optimize-settings --dry-run     # Show recommendations, don't apply
 ```
 
 ## Implementation Structure
@@ -426,10 +426,10 @@ Use and follow the `optimize-settings` skill exactly as written.
 
 From any location:
 ```bash
-/optimize-settings              # Context-adaptive
-/optimize-settings --global     # Force global scan
-/optimize-settings --user-only  # User-level only
-/optimize-settings --dry-run    # Show recommendations only
+/agents-context-system:optimize-settings              # Context-adaptive
+/agents-context-system:optimize-settings --global     # Force global scan
+/agents-context-system:optimize-settings --user-only  # User-level only
+/agents-context-system:optimize-settings --dry-run    # Show recommendations only
 ```
 
 ## Related
@@ -608,7 +608,7 @@ The `/optimize-settings` command is successful when:
 
 ```bash
 $ cd ~/Projects
-$ /optimize-settings
+$ /agents-context-system:optimize-settings
 
 🔍 Context Detection
 Running in GLOBAL mode (scanning all profiles)

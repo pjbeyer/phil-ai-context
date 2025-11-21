@@ -137,8 +137,17 @@ echo ""
 ```bash
 echo "🔍 Running consolidation analysis..."
 
-# Load rules
-rules_file="$HOME/.claude/plugins/cache/agents-context-system/config/settings-rules.json"
+# Load rules - use environment variable or default to standard location
+PLUGIN_DIR="${CLAUDE_PLUGIN_DIR:-$HOME/.claude/plugins/cache/agents-context-system}"
+rules_file="$PLUGIN_DIR/config/settings-rules.json"
+
+# Verify config file exists
+if [[ ! -f "$rules_file" ]]; then
+    echo "ERROR: Configuration file not found at $rules_file"
+    echo "Please ensure the plugin is properly installed."
+    exit 1
+fi
+
 consolidation_rules=$(jq -r '.consolidation' "$rules_file" 2>/dev/null || echo "{}")
 
 # Arrays to track recommendations

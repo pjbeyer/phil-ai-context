@@ -243,6 +243,10 @@ git add commands/optimize-settings.md
 git commit -m "feat(optimize-settings): add command entry point"
 ```
 
+**Step 4: Restart Claude Code**
+
+After adding the command file, restart Claude Code to load the new command. This is required for Claude Code to recognize the new slash command.
+
 ---
 
 ## Task 3: Create Skill File - Structure and Context Detection
@@ -499,17 +503,17 @@ Run from different locations:
 ```bash
 # Test from ~/Projects
 cd ~/Projects
-/optimize-settings --dry-run
+/agents-context-system:optimize-settings --dry-run
 # Expected: "🌍 Running in GLOBAL mode"
 
 # Test from ~/.claude
 cd ~/.claude
-/optimize-settings --dry-run
+/agents-context-system:optimize-settings --dry-run
 # Expected: "👤 Running in USER mode"
 
 # Test from agents-context-system
 cd ~/.claude/plugins/cache/agents-context-system
-/optimize-settings --dry-run
+/agents-context-system:optimize-settings --dry-run
 # Expected: "📁 Running in PROJECT mode"
 ```
 
@@ -519,6 +523,10 @@ cd ~/.claude/plugins/cache/agents-context-system
 git add skills/optimize-settings/SKILL.md
 git commit -m "feat(optimize-settings): add skill structure with context detection"
 ```
+
+**Step 5: Restart Claude Code**
+
+Restart Claude Code after adding the skill file to ensure the new skill is loaded and can be triggered by the command.
 
 ---
 
@@ -612,7 +620,7 @@ echo "  ✓ Found ${#consolidation_recommendations[@]} consolidation opportuniti
 Run:
 ```bash
 cd ~/.claude/plugins/cache/agents-context-system
-/optimize-settings --dry-run
+/agents-context-system:optimize-settings --dry-run
 ```
 
 Expected: Shows consolidation recommendations based on actual settings
@@ -699,7 +707,7 @@ echo "  ✓ Found ${#security_recommendations[@]} security concerns"
 Run:
 ```bash
 cd ~/.claude/plugins/cache/agents-context-system
-/optimize-settings --dry-run
+/agents-context-system:optimize-settings --dry-run
 ```
 
 Expected: Shows security recommendations
@@ -782,7 +790,7 @@ fi
 Run from global mode:
 ```bash
 cd ~/Projects
-/optimize-settings --dry-run
+/agents-context-system:optimize-settings --dry-run
 ```
 
 Expected: Shows permissions that appear in multiple projects
@@ -920,7 +928,7 @@ echo "  ✓ Found ${#bestpractice_recommendations[@]} best practice issues"
 Run:
 ```bash
 cd ~/.claude/plugins/cache/agents-context-system
-/optimize-settings --dry-run
+/agents-context-system:optimize-settings --dry-run
 ```
 
 Expected: Shows performance and best practice recommendations
@@ -1064,7 +1072,7 @@ fi
 Run:
 ```bash
 cd ~/.claude/plugins/cache/agents-context-system
-/optimize-settings --dry-run
+/agents-context-system:optimize-settings --dry-run
 ```
 
 Expected: Shows all recommendations organized by priority with counts
@@ -1215,7 +1223,7 @@ echo ""
 Run:
 ```bash
 cd ~/.claude/plugins/cache/agents-context-system
-/optimize-settings --dry-run
+/agents-context-system:optimize-settings --dry-run
 ```
 
 Expected: Runs through all analysis, shows placeholders for future implementation
@@ -1316,11 +1324,30 @@ git commit -m "docs: add optimize-settings command to README and plugin config"
 **Files:**
 - Test in multiple contexts
 
+**Step 0: Verify plugin installation (if using development marketplace)**
+
+If testing via development marketplace installation:
+
+```bash
+# Ensure plugin is properly installed
+# Verify command appears in available commands
+# (Use appropriate Claude Code command to list slash commands)
+```
+
+Expected:
+- Plugin is installed successfully
+- Command `/agents-context-system:optimize-settings` appears in command list
+- No errors during plugin load
+
+**Step 0.5: Restart Claude Code before testing**
+
+Restart Claude Code to ensure all plugin changes are loaded. This is critical for accurate testing.
+
 **Step 1: Test global mode**
 
 ```bash
 cd ~/Projects
-/optimize-settings --dry-run
+/agents-context-system:optimize-settings --dry-run
 ```
 
 **Expected output:**
@@ -1334,7 +1361,7 @@ cd ~/Projects
 
 ```bash
 cd ~/.claude/plugins/cache/agents-context-system
-/optimize-settings --dry-run
+/agents-context-system:optimize-settings --dry-run
 ```
 
 **Expected output:**
@@ -1347,7 +1374,7 @@ cd ~/.claude/plugins/cache/agents-context-system
 
 ```bash
 cd ~/.claude
-/optimize-settings --dry-run
+/agents-context-system:optimize-settings --dry-run
 ```
 
 **Expected output:**
@@ -1360,7 +1387,7 @@ cd ~/.claude
 
 ```bash
 cd ~/.claude/plugins/cache/agents-context-system
-/optimize-settings --global --dry-run
+/agents-context-system:optimize-settings --global --dry-run
 ```
 
 **Expected output:**
@@ -1372,7 +1399,7 @@ cd ~/.claude/plugins/cache/agents-context-system
 ```bash
 # Test with no settings file
 mv ~/.claude/settings.json ~/.claude/settings.json.tmp
-/optimize-settings --dry-run
+/agents-context-system:optimize-settings --dry-run
 mv ~/.claude/settings.json.tmp ~/.claude/settings.json
 ```
 
@@ -1405,6 +1432,17 @@ Ready for phase 2: interactive approval and settings modification"
 **Files:**
 - Update issue #2
 - Create phase 2 plan document
+- Update .claude-plugin/plugin.json
+
+**Step 0: Update plugin version**
+
+Update the version field in `.claude-plugin/plugin.json` to reflect this release:
+
+```bash
+# Example: Update version from 1.0.0 to 1.1.0 (minor release with new feature)
+# Edit .claude-plugin/plugin.json and increment version appropriately
+# Follow semantic versioning: major.minor.patch
+```
 
 **Step 1: Document Phase 1 completion**
 
@@ -1496,10 +1534,11 @@ Create `docs/plans/2025-11-20-optimize-settings-phase2.md`:
 **Start Phase 2:** After Phase 1 is merged and tested in production
 ```
 
-**Step 3: Commit documentation**
+**Step 3: Commit documentation and version update**
 
 ```bash
 git add docs/plans/2025-11-20-optimize-settings-phase2.md
+git add .claude-plugin/plugin.json  # Include version update
 git commit -m "docs: add Phase 2 implementation plan for optimize-settings
 
 Phase 1 delivers:
@@ -1512,7 +1551,9 @@ Phase 2 will add:
 - Interactive approval
 - Settings modification
 - Documentation generation
-- Complete workflow"
+- Complete workflow
+
+Bump version for Phase 1 completion"
 ```
 
 ---
@@ -1537,5 +1578,5 @@ The `/optimize-settings` command now:
 **Test it:**
 ```bash
 cd ~/Projects
-/optimize-settings --dry-run
+/agents-context-system:optimize-settings --dry-run
 ```
