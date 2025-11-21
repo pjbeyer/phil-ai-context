@@ -244,6 +244,53 @@ recommendations="Based on content analysis:
 - Labels: `documentation`, `optimization`
 - Linked to analysis report in `docs/optimization/`
 
+## Comprehensive Documentation Fix
+
+If AGENTS.md issues go beyond simple optimization, suggest agents-documentation-suite:
+
+**When to suggest:**
+- File is >50% over budget
+- Hierarchy violations detected
+- Duplicated content from parent levels
+- Poor structure or organization
+- Multiple sections need extraction
+
+**Suggestion:**
+```bash
+echo ""
+echo "This AGENTS.md needs more than optimization."
+echo "Consider using agents-documentation-suite for comprehensive rewrite:"
+echo ""
+echo "  Use skill: agents-documentation-suite:write-machine-docs"
+echo "  Or command: /doc write --audience=machine --target=AGENTS.md"
+echo ""
+echo "This will:"
+echo "- Rewrite with proper hierarchical structure"
+echo "- Ensure token budget compliance"
+echo "- Extract details to docs/ systematically"
+echo "- Add proper references"
+echo "- Follow hierarchy principles"
+```
+
+**Benefits of doc-suite approach:**
+- Clean slate with correct structure
+- Systematic extraction to docs/
+- Token budget compliance by design
+- Hierarchy principles enforced
+- Professional documentation standards
+
+**When simple optimization is sufficient:**
+- File is <25% over budget
+- Just needs content extraction
+- Structure is already good
+- No hierarchy violations
+
+**Integration:**
+- Check budget violation percentage
+- Analyze structure quality
+- Suggest appropriate approach
+- User decides: optimize or rewrite
+
 ## Integration
 
 This skill can be invoked by:
