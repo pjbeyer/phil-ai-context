@@ -1,0 +1,78 @@
+{
+  "security": {
+    "overly_permissive_patterns": [
+      "Read(//Users/**)",
+      "Read(//**)",
+      "Bash(*:*)",
+      "Write(~/**)",
+      "Write(//**)"
+    ],
+    "required_denials": [
+      "Read(.env)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(~/.ssh/id_*)",
+      "Read(~/.ssh/id_*.pub)",
+      "Read(~/.gnupg/**)",
+      "Write(~/.ssh/**)",
+      "Write(~/.aws/**)",
+      "Write(~/.gnupg/**)",
+      "Bash(rm -rf:*)",
+      "Bash(sudo:*)",
+      "Bash(curl *| bash:*)",
+      "Bash(wget *| sh:*)",
+      "Bash(eval:*)"
+    ],
+    "contradiction_checks": true
+  },
+  "consolidation": {
+    "wildcard_patterns": {
+      "Skill(agents-*-system:*)": "Skill(agents-*:*)",
+      "Skill(agents-*-suite:*)": "Skill(agents-*:*)",
+      "Skill(superpowers:*)": "Skill(superpowers:*)",
+      "SlashCommand(/agents-*:*)": "SlashCommand(/agents-*:*)",
+      "SlashCommand(/work-*:*)": "SlashCommand(/work-*:*)"
+    },
+    "minimum_instances_for_consolidation": 3
+  },
+  "migration": {
+    "minimum_projects_for_user_level": 3,
+    "exclude_patterns": [
+      "**/project-specific-path/**",
+      "**/.git/**"
+    ]
+  },
+  "performance": {
+    "specific_before_general": true,
+    "env_var_threshold": 2
+  },
+  "deprecated": {
+    "settings": [
+      "approvedSkills"
+    ],
+    "replacements": {
+      "approvedSkills": "Use permissions.allow with Skill(...) patterns instead"
+    }
+  },
+  "priority_rules": {
+    "high": [
+      "security_risk",
+      "overly_permissive",
+      "allow_deny_contradiction",
+      "removes_security_denial",
+      "deprecated_setting"
+    ],
+    "medium": [
+      "consolidation_with_wildcards",
+      "migration_candidate",
+      "performance_improvement",
+      "duplicate_permission"
+    ],
+    "low": [
+      "formatting",
+      "ordering",
+      "minor_cleanup",
+      "whitespace"
+    ]
+  }
+}
