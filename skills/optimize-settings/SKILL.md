@@ -135,8 +135,73 @@ echo ""
 **Step 4: Detect duplicate permissions and consolidation opportunities**
 
 ```bash
-# TODO: Implement in next task
-echo "⏳ Consolidation analysis - TODO"
+echo "🔍 Running consolidation analysis..."
+
+# Load rules
+rules_file="$HOME/.claude/plugins/cache/agents-context-system/config/settings-rules.json"
+consolidation_rules=$(jq -r '.consolidation' "$rules_file" 2>/dev/null || echo "{}")
+
+# Arrays to track recommendations
+declare -a consolidation_recommendations=()
+consolidation_priority=()
+
+# Check for duplicate permissions across files
+if [[ ${#settings_files[@]} -gt 1 ]]; then
+    echo "  → Checking for duplicate permissions..."
+
+    # Extract all permissions from user-level
+    user_permissions=$(jq -r '.permissions.allow[]?' "$user_settings" 2>/dev/null | sort)
+
+    # Check each project settings file
+    for settings_file in "${settings_files[@]}"; do
+        if [[ "$settings_file" == "$user_settings" ]]; then
+            continue
+        fi
+
+        project_permissions=$(jq -r '.permissions.allow[]?' "$settings_file" 2>/dev/null | sort)
+
+        # Find duplicates
+        while IFS= read -r perm; do
+            if echo "$user_permissions" | grep -Fxq "$perm"; then
+                consolidation_recommendations+=("Remove duplicate from $(basename $(dirname $(dirname "$settings_file"))): $perm (already in user-level)")
+                consolidation_priority+=("MEDIUM")
+            fi
+        done <<< "$project_permissions"
+    done
+fi
+
+# Check for wildcard consolidation opportunities
+echo "  → Checking for wildcard consolidation..."
+
+# Get all permissions from user settings
+all_permissions=$(jq -r '.permissions.allow[]?' "$user_settings" 2>/dev/null)
+
+# Check for patterns that could be consolidated
+# Example: Multiple "Skill(agents-*-system:*)" → "Skill(agents-*:*)"
+skill_agents_count=$(echo "$all_permissions" | grep -c "Skill(agents-.*:.*)" || true)
+if [[ $skill_agents_count -ge 3 ]]; then
+    consolidation_recommendations+=("Consolidate $skill_agents_count Skill(agents-...) patterns to Skill(agents-*:*)")
+    consolidation_priority+=("MEDIUM")
+fi
+
+# Check for dead references (permissions for non-existent paths)
+echo "  → Checking for unused additionalDirectories..."
+
+additional_dirs=$(jq -r '.permissions.additionalDirectories[]?' "$user_settings" 2>/dev/null)
+
+while IFS= read -r dir; do
+    if [[ -n "$dir" ]]; then
+        # Expand ~ to home directory
+        expanded_dir="${dir/#\~/$HOME}"
+
+        if [[ ! -d "$expanded_dir" ]]; then
+            consolidation_recommendations+=("Remove unused additionalDirectory: $dir (directory doesn't exist)")
+            consolidation_priority+=("LOW")
+        fi
+    fi
+done <<< "$additional_dirs"
+
+echo "  ✓ Found ${#consolidation_recommendations[@]} consolidation opportunities"
 ```
 
 ### Security Analysis
